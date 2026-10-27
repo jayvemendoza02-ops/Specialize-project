@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | Specialize</title>
+    <link rel="stylesheet" href="home.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css"
+    />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand"><i class="fa-solid fa-gem"></i> Specialize</div>
+      <div class="topbar-right">
+        <span class="user-chip"
+          ><i class="fa-solid fa-user"></i>
+          <span id="user-name">Guest</span></span
+        >
+        <button id="logout" type="button">Log out</button>
+      </div>
+    </header>
+
+    <main class="home">
+      <section class="diagram glass">
+        <img
+          src="erd.jpg"
+          alt="Entity relationship diagram: Customer, Order, Payment, Order Item, Product and Shipping"
+        />
+      </section>
+    </main>
+
+    <script>
+      // Get the username saved by the login page
+      let name = "Guest";
+      try {
+        name = sessionStorage.getItem("username");
+      } catch (err) {}
+
+      // Not logged in -> back to the login page
+      if (!name) {
+        window.location.href = "index.html";
+      } else {
+        document.getElementById("user-name").textContent = name;
+      }
+
+      // Log out -> clear and go back to login
+      document.getElementById("logout").addEventListener("click", () => {
+        try {
+          sessionStorage.removeItem("username");
+        } catch (err) {}
+        window.location.href = "index.html";
+      });
+    </script>
+  </body>
+</html>
